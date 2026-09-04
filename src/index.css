@@ -87,6 +87,18 @@ footer {
   transition: transform 0.1s ease-in-out;
 }
 
+.back-button {
+  display: block;
+  color: black;
+  text-decoration: none;
+  margin-top: 60px;
+  margin-left: 26px;
+}
+
+.back-button span:hover {
+  text-decoration: underline;
+}
+
 .link-button:hover {
   transform: translate(1px, 1px);
 }
@@ -322,4 +334,83 @@ i[class*="book-type-"] {
   color: #161616;
   text-decoration: underline;
   font-weight: 600;
+}
+
+.host-book-link-wrapper {
+  color: unset;
+  text-decoration: unset;
+}
+
+.host-books-list {
+  padding-inline: 26px;
+}
+
+.host-books-title {
+  padding-inline: 26px;
+}
+
+.host-book-single {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 15px;
+  padding-block: 18px;
+  padding-left: 24px;
+}
+
+.host-book-single > img {
+  height: 70px;
+  border-radius: 5px;
+  margin-right: 17px;
+}
+
+.host-book-info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-block: 10px;
+}
+
+.host-book-info p {
+  margin-block: 10px;
+}
+
+.host-book-detail-layout-container {
+  background-color: white;
+  padding: 24px;
+  margin: 30px 26px;
+}
+
+.host-book-detail {
+  display: flex;
+  align-items: center;
+}
+
+.host-book-detail > img {
+  height: 160px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.host-book-detail-info-text > h3 {
+  margin-top: 24px;
+  margin-bottom: 5px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.host-book-detail-info-text > h4 {
+  font-size: 20px;
+  margin-block: 0;
+}
+
+.host-book-detail-nav {
+  display: flex;
+  margin-block: 25px;
+}
+
+.host-book-detail-nav a {
+  text-decoration: none;
+  color: #4d4d4d;
+  font-weight: 500;
+  padding: 5px 20px;
 }

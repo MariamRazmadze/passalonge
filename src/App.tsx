@@ -10,6 +10,9 @@ import Layout from "./components/Layout";
 import HostLayout from "./pages/Host/HostLayout";
 import HostBooks from "./pages/Host/HostBooks";
 import HostBookDetail from "./pages/Host/HostBookDetail";
+import HostBookPhotos from "./pages/Host/HostBookPhotos";
+import HostBookPricing from "./pages/Host/HostBookPricing";
+import HostBookInfo from "./pages/Host/HostBookInfo";
 
 export default function App() {
   return (
@@ -25,7 +28,11 @@ export default function App() {
             <Route path="income" element={<Income />} />
             <Route path="reviews" element={<Reviews />} />
             <Route path="books" element={<HostBooks />} />
-            <Route path="books/:id" element={<HostBookDetail />} />
+            <Route path="books/:id" element={<HostBookDetail />}>
+              <Route index element={<HostBookInfo />} />
+              <Route path="pricing" element={<HostBookPricing />} />
+              <Route path="photos" element={<HostBookPhotos />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
