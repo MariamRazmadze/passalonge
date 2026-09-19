@@ -414,3 +414,40 @@ i[class*="book-type-"] {
   font-weight: 500;
   padding: 5px 20px;
 }
+
+.host-book-detail-nav a:first-of-type {
+  text-decoration: none;
+  color: #4d4d4d;
+  font-weight: 500;
+  padding: 5px 15px;
+  margin-left: -15px;
+}
+
+.host-book-detail-nav a:hover {
+  color: #161616;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.host-book-detail-info > h4 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+}
+.host-book-detail-info > h4 > span {
+  font-weight: 500;
+}
+.host-book-price {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.host-book-price > span {
+  font-size: 16px;
+  color: #4d4d4d;
+}
+
+.host-book-detail-image {
+  height: 100px;
+  border-radius: 5px;
+}

@@ -1,3 +1,6 @@
+import { useHostBook } from "./HostBookDetail";
+
 export default function HostBookPricing() {
-  return <div>HostBookPricing</div>;
+  const { currentBook } = useHostBook();
+  return <h3 className="host-book-price">{currentBook.price}₾</h3>;
 }

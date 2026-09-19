@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useParams } from "react-router";
+import { Link, NavLink, Outlet, useOutletContext, useParams } from "react-router";
 import type { Book } from "../Books/Books";
+
+type ContextType = { currentBook: Book };
+
+export function useHostBook() {
+  return useOutletContext<ContextType>();
+}
 
 export default function HostBookDetail() {
   const [currentBook, setCurrentBook] = useState<Book | null>(null);
@@ -57,7 +63,7 @@ export default function HostBookDetail() {
             Photos
           </NavLink>
         </nav>
-        <Outlet />
+        <Outlet context={{ currentBook } satisfies ContextType} />
       </div>
     </section>
   );
