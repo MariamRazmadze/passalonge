@@ -32,7 +32,7 @@ export default function Hostbooks() {
         <img src={book.imageUrl} alt={`Photo of ${book.title}`} />
         <div className="host-book-info">
           <h3>{book.title}</h3>
-          <p>${book.price}/day</p>
+          <p>{book.price}₾</p>
         </div>
       </div>
     </Link>
