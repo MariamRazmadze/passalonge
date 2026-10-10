@@ -22,6 +22,16 @@ export default function Books() {
       .then((data) => setBooks(data.books));
   }, []);
 
+  /**
+   * 2. On just the 3 filter buttons (not the Clear filter button),
+   *    conditionally render the className "selected" if the
+   *    typeFilter value equals the value that button sets it to.
+   *    (We don't have a variable for that, so it'll be a hard-coded
+   *    string).
+   *
+   *    Hint: `...${typeFilter === "simple" ? ...}`
+   */
+
   const displayedBooks = typeFilter
     ? books.filter((book) => book.type === typeFilter)
     : books;
@@ -41,18 +51,32 @@ export default function Books() {
     <div className="book-list-container">
       <h1>Explore our Book options</h1>
       <div className="van-list-filter-buttons">
-        <Link to="?type=buy" className="book-type buy">
+        <button
+          className={`book-type buy ${typeFilter === "buy" ? "selected" : ""}`}
+          onClick={() => setSearchParams({ type: "buy" })}
+        >
           Buy
-        </Link>
-        <Link to="?type=borrow" className="book-type borrow">
+        </button>
+        <button
+          className={`book-type borrow ${typeFilter === "borrow" ? "selected" : ""}`}
+          onClick={() => setSearchParams({ type: "borrow" })}
+        >
           Borrow
-        </Link>
-        <Link to="?type=gift" className="book-type gift">
+        </button>
+        <button
+          className={`book-type gift ${typeFilter === "gift" ? "selected" : ""}`}
+          onClick={() => setSearchParams({ type: "gift" })}
+        >
           Gift
-        </Link>
-        <Link to="." className="book-type clear-filters">
-          Clear Filters
-        </Link>
+        </button>
+        {typeFilter ? (
+          <button
+            className="book-type clear-filters"
+            onClick={() => setSearchParams({})}
+          >
+            Clear Filters
+          </button>
+        ) : null}
       </div>
       <div className="book-list">{bookElements}</div>
     </div>
