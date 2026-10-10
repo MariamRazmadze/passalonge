@@ -23,11 +23,7 @@ export default function Hostbooks() {
   }, []);
 
   const hostbooksEls = books.map((book) => (
-    <Link
-      to={`/host/books/${book.id}`}
-      key={book.id}
-      className="host-book-link-wrapper"
-    >
+    <Link to={book.id} key={book.id} className="host-book-link-wrapper">
       <div className="host-book-single" key={book.id}>
         <img src={book.imageUrl} alt={`Photo of ${book.title}`} />
         <div className="host-book-info">

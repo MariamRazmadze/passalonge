@@ -22,22 +22,12 @@ export default function Books() {
       .then((data) => setBooks(data.books));
   }, []);
 
-  /**
-   * 2. On just the 3 filter buttons (not the Clear filter button),
-   *    conditionally render the className "selected" if the
-   *    typeFilter value equals the value that button sets it to.
-   *    (We don't have a variable for that, so it'll be a hard-coded
-   *    string).
-   *
-   *    Hint: `...${typeFilter === "simple" ? ...}`
-   */
-
   const displayedBooks = typeFilter
     ? books.filter((book) => book.type === typeFilter)
     : books;
   const bookElements = displayedBooks.map((book) => (
     <div key={book.id} className="book-tile">
-      <Link to={`/books/${book.id}`}>
+      <Link to={book.id}>
         <img src={book.imageUrl} />
         <div className="book-info">
           <h3>{book.title}</h3>

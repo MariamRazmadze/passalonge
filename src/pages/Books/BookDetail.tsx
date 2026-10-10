@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import type { Book } from "./Books";
 
 export default function BookDetail() {
@@ -14,6 +14,9 @@ export default function BookDetail() {
 
   return (
     <div className="book-detail-container">
+      <Link to=".." relative="path" className="back-button">
+        &larr; <span>Back to all books</span>
+      </Link>
       {book ? (
         <div className="book-detail">
           <img src={book.imageUrl} />
