@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useParams, useLocation } from "react-router";
 import type { Book } from "./Books";
 
 export default function BookDetail() {
   const { id } = useParams();
+  const location = useLocation();
   const [book, setBook] = useState<Book | null>(null);
 
   useEffect(() => {
@@ -12,9 +13,10 @@ export default function BookDetail() {
       .then((data) => setBook(data.book));
   }, [id]);
 
+  const search = location.state?.search || "";
   return (
     <div className="book-detail-container">
-      <Link to=".." relative="path" className="back-button">
+      <Link to={`..${search}`} relative="path" className="back-button">
         &larr; <span>Back to all books</span>
       </Link>
       {book ? (

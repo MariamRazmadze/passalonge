@@ -27,7 +27,7 @@ export default function Books() {
     : books;
   const bookElements = displayedBooks.map((book) => (
     <div key={book.id} className="book-tile">
-      <Link to={book.id}>
+      <Link to={book.id} state={{ search: `?${searchParams.toString()}` }}>
         <img src={book.imageUrl} />
         <div className="book-info">
           <h3>{book.title}</h3>
