@@ -13,6 +13,7 @@ import HostBookDetail from "./pages/Host/HostBookDetail";
 import HostBookPhotos from "./pages/Host/HostBookPhotos";
 import HostBookPricing from "./pages/Host/HostBookPricing";
 import HostBookInfo from "./pages/Host/HostBookInfo";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
               <Route path="photos" element={<HostBookPhotos />} />
             </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

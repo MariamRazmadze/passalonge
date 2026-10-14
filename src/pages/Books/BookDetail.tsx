@@ -14,10 +14,11 @@ export default function BookDetail() {
   }, [id]);
 
   const search = location.state?.search || "";
+  const type = location.state?.type || "all";
   return (
     <div className="book-detail-container">
       <Link to={`..${search}`} relative="path" className="back-button">
-        &larr; <span>Back to all books</span>
+        &larr; <span>Back to {type} books</span>
       </Link>
       {book ? (
         <div className="book-detail">
