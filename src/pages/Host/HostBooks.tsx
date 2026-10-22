@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { getHostBooks } from "../../api";
 
 type Book = {
   id: string;
@@ -15,11 +16,24 @@ type Book = {
 
 export default function Hostbooks() {
   const [books, setbooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch("/api/host/books")
-      .then((res) => res.json())
-      .then((data) => setbooks(data.books));
+    async function fetchHostBooks() {
+      setLoading(true);
+      try {
+        const data = await getHostBooks();
+        setbooks(data);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchHostBooks();
   }, []);
 
   const hostbooksEls = books.map((book) => (
@@ -33,7 +47,12 @@ export default function Hostbooks() {
       </div>
     </Link>
   ));
-
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+  if (error) {
+    return <h1>Error {error.message}</h1>;
+  }
   return (
     <section>
       <h1 className="host-books-title">Your listed books</h1>
@@ -41,7 +60,7 @@ export default function Hostbooks() {
         {books.length > 0 ? (
           <section>{hostbooksEls}</section>
         ) : (
-          <h2>Loading...</h2>
+          <h2>You have no listed books yet</h2>
         )}
       </div>
     </section>

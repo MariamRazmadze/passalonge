@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useOutletContext, useParams } from "react-router";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useOutletContext,
+  useParams,
+} from "react-router";
 import type { Book } from "../Books/Books";
+import { getHostBook } from "../../api";
 
 type ContextType = { currentBook: Book };
 
@@ -10,6 +17,8 @@ export function useHostBook() {
 
 export default function HostBookDetail() {
   const [currentBook, setCurrentBook] = useState<Book | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
   const { id } = useParams();
 
   const activeStyles = {
@@ -18,12 +27,31 @@ export default function HostBookDetail() {
     color: "#161616",
   };
   useEffect(() => {
-    fetch(`/api/host/books/${id}`)
-      .then((res) => res.json())
-      .then((data) => setCurrentBook(data.books[0] ?? null));
+    async function fetchHostBook() {
+      setLoading(true);
+      try {
+        const data = await getHostBook(id);
+        setCurrentBook(data);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchHostBook();
   }, [id]);
+
+  if (loading) {
+    return <h1>Loading....</h1>;
+  }
+
+  if (error) {
+    return <h1>Error, {error.message}</h1>;
+  }
   if (!currentBook) {
-    return <h1>Loading...</h1>;
+    return <h1>Book not found</h1>;
   }
   return (
     <section>

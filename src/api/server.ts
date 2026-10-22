@@ -1,4 +1,4 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Model, Response } from "miragejs";
 import firstImage from "../assets/images/1.webp";
 import secondImage from "../assets/images/2.webp";
 import thirdImage from "../assets/images/3.webp";
@@ -113,8 +113,11 @@ createServer({
 
   routes() {
     this.namespace = "api";
+    this.logging = false;
+    this.timing = 2000;
 
     this.get("/books", (schema) => {
+      // return new Response(400, {}, { error: "Error fetching data" });
       return schema.all("book");
     });
 

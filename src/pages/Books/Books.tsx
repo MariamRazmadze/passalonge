@@ -1,6 +1,7 @@
 import "../../api/server";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
+import { getBooks } from "../../api";
 
 export type Book = {
   id: string;
@@ -14,12 +15,25 @@ export type Book = {
 };
 export default function Books() {
   const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
   useEffect(() => {
-    fetch("/api/books")
-      .then((res) => res.json())
-      .then((data) => setBooks(data.books));
+    async function loadBooks() {
+      setLoading(true);
+      try {
+        const data = await getBooks();
+        setBooks(data);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadBooks();
   }, []);
 
   const displayedBooks = typeFilter
@@ -40,6 +54,14 @@ export default function Books() {
       </Link>
     </div>
   ));
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error... {error.message}</h1>;
+  }
   return (
     <div className="book-list-container">
       <h1>Explore our Book options</h1>
