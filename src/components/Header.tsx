@@ -1,3 +1,4 @@
+import { User } from "lucide-react";
 import { NavLink, Link } from "react-router";
 
 export default function Header() {
@@ -7,6 +8,12 @@ export default function Header() {
         #PASSALONGE
       </Link>
       <nav>
+        <NavLink
+          to="/host"
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          host
+        </NavLink>
         <NavLink
           to="/about"
           className={({ isActive }) => (isActive ? "active-link" : "")}
@@ -19,12 +26,9 @@ export default function Header() {
         >
           Books
         </NavLink>
-        <NavLink
-          to="/host"
-          className={({ isActive }) => (isActive ? "active-link" : "")}
-        >
-          host
-        </NavLink>
+        <Link to="/login" className="login-icon">
+          <User />
+        </Link>
       </nav>
     </header>
   );

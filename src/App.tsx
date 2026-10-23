@@ -14,6 +14,7 @@ import HostBookPhotos from "./pages/Host/HostBookPhotos";
 import HostBookPricing from "./pages/Host/HostBookPricing";
 import HostBookInfo from "./pages/Host/HostBookInfo";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="books" element={<Books />} />
           <Route path="books/:id" element={<BookDetail />} />
+          <Route path="login" element={<Login />} />
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="income" element={<Income />} />
